@@ -14,7 +14,11 @@ function App() {
       <Header />
       <div className={styles.wrapper}>
         <Sidebar />
-        <Post />       
+        <div>
+          <Post />
+          <Post />
+        </div>   
+           
       </div>
     </div>
   )
