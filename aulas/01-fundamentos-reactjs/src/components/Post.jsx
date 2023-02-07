@@ -26,13 +26,13 @@ export function Post({ author, publishedAt, content }){
     event.preventDefault()
     
     setComments([...comments, newCommentText])
-    
+
     setNewCommentText("")
   }
 
   function handleNewCommentChange(){
     setNewCommentText(event.target.value)
-  }
+  } 
 
   return(
     <article className={styles.post}>
@@ -45,16 +45,16 @@ export function Post({ author, publishedAt, content }){
           </div>
         </div>
 
-        <time title={publishedDateFormatted} datetime={publishedAt.toISOString()}>
+        <time title={publishedDateFormatted} dateTime={publishedAt.toISOString()}>
           {publishedDateRelativeToNow}
         </time>
       </header>
 
       <div className={styles.content}>
         
-        {content.map(content => {
+        {content.map(line => {
           return(
-            content.type === "paragraph" ? <p>{content.content}</p> : <p><a href="#">{content.content}</a></p>
+            line.type === "paragraph" ? <p key={line.content}>{line.content}</p> : <p key={line.content}><a href="#">{line.content}</a></p>
           )
         })}
         
@@ -76,7 +76,7 @@ export function Post({ author, publishedAt, content }){
 
       <div className={styles.commentList}>
         {comments.map(comment => {
-          return <Comment content={comment}/>
+          return <Comment key={comment} content={comment}/>
         })}
       </div>
     </article>
